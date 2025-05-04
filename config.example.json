@@ -1,0 +1,9 @@
+{
+    "auth_providers": [
+        {
+            "name": "Google",
+            "client_id": "XXXXXXXX",
+            "client_secret": "XXXXXXXX"
+        }
+    ]
+}

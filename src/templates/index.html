@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    {# Link to the static CSS file - adjust path if needed #}
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+    <style>
+        /* Remove flex properties for vertical layout */
+        .task-container {
+            /* display: flex; */ /* Removed for vertical layout */
+            /* flex-wrap: wrap; */ /* Removed for vertical layout */
+            gap: 1.5rem; /* Keep gap for spacing */
+            padding: 1rem;
+            max-width: 800px; /* Optional: Constrain width */
+            margin: 0 auto; /* Optional: Center the container */
+        }
+        /* Ensure task-card styles are suitable (assuming they exist in style.css) */
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Tasks</h1>
+    </header>
+
+    {# Container where JavaScript will add the task cards #}
+    <main id="task-container" class="task-container">
+        <p id="loading-message">Loading tasks...</p>
+        {# Tasks will be loaded here by JavaScript #}
+    </main>
+
+    <footer>
+        <p>Task Manager Frontend</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const taskContainer = document.getElementById('task-container');
+            const loadingMessage = document.getElementById('loading-message');
+
+            fetch('/tasks') // Fetch tasks from the /tasks endpoint
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(tasks => {
+                    loadingMessage.style.display = 'none'; // Hide loading message
+                    if (tasks.tasks && tasks.tasks.length > 0) {
+                        tasks.tasks.forEach(task => {
+                            // Create card element
+                            const card = document.createElement('div');
+                            // Add base class and status-specific class
+                            const statusClass = `status-${task.status.toLowerCase().replace(/\s+/g, '-')}`;
+                            card.className = `task-card ${statusClass}`;
+
+                            // Create and append title
+                            const title = document.createElement('h2');
+                            title.textContent = task.title;
+                            card.appendChild(title);
+
+                            // Create and append body
+                            const body = document.createElement('p');
+                            body.textContent = task.body;
+                            card.appendChild(body);
+
+                            // Create and append status
+                            const status = document.createElement('div');
+                            status.className = 'task-status';
+                            status.textContent = `Status: ${task.status}`;
+                            card.appendChild(status);
+
+                            // Append the card to the container
+                            taskContainer.appendChild(card);
+                        });
+                    } else {
+                        taskContainer.innerHTML = '<p>No tasks found.</p>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching tasks:', error);
+                    loadingMessage.textContent = 'Failed to load tasks.';
+                    taskContainer.innerHTML = '<p>Could not load tasks. Please try again later.</p>';
+                });
+        });
+    </script>
+</body>
+</html>
