@@ -12,7 +12,7 @@ env:
 
 jobs:
   tag-version:
-    uses: yotla/shared-workflows/.github/workflows/tag-version.yml@0.0.1
+    uses: yotla/shared-workflows/.github/workflows/tag-version.yaml@0.0.1
     secrets: inherit
 
   build-and-push-image:
