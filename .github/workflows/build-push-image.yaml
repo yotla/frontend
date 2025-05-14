@@ -37,6 +37,6 @@ jobs:
       with:
         context: .
         file: Dockerfile
-        tags: ${{ env.IMAGE_NAME }}:${{ needs.tag-version.outputs.NEW_VERSION }}, ${{ env.IMAGE_NAME }}:latest
+        tags: ${{ env.IMAGE_NAME }}:${{ needs.tag-version.outputs.NEW_VERSION }}
         platforms: linux/amd64,linux/arm64
         push: true
