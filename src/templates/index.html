@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Manager</title>
     {# Link to the static CSS file - adjust path if needed #}
-    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/modern-dark.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/task-card.css') }}">
     <style>
         /* Remove flex properties for vertical layout */
         .task-container {
@@ -21,7 +22,7 @@
 </head>
 <body>
     <header>
-        <h1>My Tasks</h1>
+        <h1>YOTLA - Yoyo's Overengineered Task-List App</h1>
     </header>
 
     {# Container where JavaScript will add the task cards #}

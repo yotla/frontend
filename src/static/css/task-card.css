@@ -1,0 +1,45 @@
+.task-card {
+    border: 1px solid #444444;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    background-color: #2a2a2a; /* Slightly lighter than the container background */
+}
+
+.task-card h2 {
+    margin-top: 0;
+    font-size: 1.2em;
+}
+
+.task-card p {
+    margin-bottom: 10px;
+}
+
+.task-status {
+    font-size: 0.9em;
+    color: #aaaaaa;
+    margin-top: 10px;
+    border-top: 1px dashed #444444;
+    padding-top: 5px;
+}
+
+/* Example status-specific styling */
+.status-to-do {
+    border-left: 5px solid #bb86fc; /* Purple for 'To Do' */
+}
+
+.status-in-progress {
+    border-left: 5px solid #03dac6; /* Teal for 'In Progress' */
+}
+
+.status-done {
+    border-left: 5px solid #cf6679; /* Pink/Red for 'Done' */
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+.status-done h2,
+.status-done p {
+    color: #aaaaaa;
+} 

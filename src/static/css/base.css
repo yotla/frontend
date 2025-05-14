@@ -1,0 +1,366 @@
+:root {
+    /* Light theme variables */
+    --primary-color: #7b42f5;
+    --secondary-color: #844bff;
+    --bg-color: #f9f9fb;
+    --text-color: #333;
+    --sidebar-bg: #ffffff;
+    --sidebar-text: #4a5568;
+    --sidebar-active-bg: #f7f7ff;
+    --sidebar-active-text: #7b42f5;
+    --sidebar-border: #e4e4e7;
+    --card-bg: #ffffff;
+    --card-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    --sidebar-width: 250px;
+    --muted-text: #718096;
+}
+
+/* Dark theme variables */
+[data-theme="dark"] {
+    --primary-color: #9d6fff;
+    --secondary-color: #b285ff;
+    --bg-color: #1a1a24;
+    --text-color: #e0e0e0;
+    --sidebar-bg: #242432;
+    --sidebar-text: #c0c0c0;
+    --sidebar-active-bg: #2d2d3d;
+    --sidebar-active-text: #b285ff;
+    --sidebar-border: #3a3a4a;
+    --card-bg: #282836;
+    --card-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    --muted-text: #b0b0b0;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: var(--sidebar-width);
+    background-color: var(--sidebar-bg);
+    box-shadow: var(--card-shadow);
+    padding: 1rem;
+    overflow-y: auto;
+    z-index: 1000;
+    transition: background-color 0.3s;
+}
+
+.sidebar-header {
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--sidebar-border);
+}
+
+.sidebar-header h3 {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    font-size: 1.2rem;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1rem;
+}
+
+.sidebar-menu li {
+    margin-bottom: 0.25rem;
+}
+
+.sidebar-menu a {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    color: var(--sidebar-text);
+    text-decoration: none;
+    border-radius: 0.375rem;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+}
+
+.sidebar-menu a:hover, .sidebar-menu a.active {
+    background-color: var(--sidebar-active-bg);
+    color: var(--sidebar-active-text);
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--muted-text);
+    border-top: 1px solid var(--sidebar-border);
+}
+
+.main-content {
+    margin-left: var(--sidebar-width);
+    padding: 1rem;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s;
+}
+
+.page-header {
+    margin-bottom: 0.75rem;
+}
+
+.page-header h1 {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.25rem;
+    font-size: 1.5rem;
+}
+
+.page-header p {
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+    color: var(--muted-text);
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: 0.5rem;
+    box-shadow: var(--card-shadow);
+    border: none;
+    margin-bottom: 0.75rem;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.card-header {
+    background-color: var(--card-bg);
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--sidebar-border);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+}
+
+.card-body {
+    padding: 0.75rem;
+    color: var(--text-color);
+}
+
+.project-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    height: 100%;
+    background-color: var(--card-bg);
+    box-shadow: var(--card-shadow);
+}
+
+.project-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.project-card .card-body {
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card h3 {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: var(--primary-color);
+    font-size: 1rem;
+}
+
+.project-card p {
+    font-size: 0.8rem;
+    margin-bottom: 0.25rem;
+    flex-grow: 1;
+    color: var(--text-color);
+}
+
+.project-card small {
+    font-size: 0.75rem;
+    color: var(--muted-text);
+}
+
+.project-card .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+}
+
+pre.terraform-output {
+    background-color: var(--bg-color);
+    padding: 1rem;
+    border-radius: 0.375rem;
+    overflow-x: auto;
+    max-height: 75vh;
+    font-family: 'Cascadia Code', 'Courier New', Courier, monospace;
+    font-size: 0.875rem;
+    white-space: pre-wrap;
+    color: var(--text-color);
+}
+
+.health-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+.health-good {
+    background-color: #48bb78;
+}
+
+.health-warning {
+    background-color: #f6ad55;
+}
+
+.health-error {
+    background-color: #f56565;
+}
+
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+    flex-grow: 1;
+    max-height: calc(100vh - 190px);
+    overflow-y: auto;
+}
+
+.system-info-row {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.system-info-row .col-md-6 {
+    flex: 1;
+}
+
+.system-info-row p {
+    margin-bottom: 0;
+    font-size: 0.8rem;
+    color: var(--text-color);
+}
+
+.system-info-row strong {
+    font-size: 0.85rem;
+    color: var(--primary-color);
+}
+
+.system-info-row .text-muted {
+    font-size: 0.75rem;
+    color: var(--muted-text) !important;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1001;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-3px);
+    background-color: var(--secondary-color);
+}
+
+/* Bootstrap overrides for dark mode */
+[data-theme="dark"] .text-muted {
+    color: var(--muted-text) !important;
+}
+
+[data-theme="dark"] .btn-outline-secondary {
+    color: var(--text-color);
+    border-color: var(--sidebar-border);
+}
+
+[data-theme="dark"] .btn-outline-secondary:hover {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    background-color: transparent;
+}
+
+[data-theme="dark"] .btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+[data-theme="dark"] .btn-primary:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+/* Additional styles for project cards in dark mode */
+.bg-light {
+    background-color: var(--sidebar-active-bg) !important;
+}
+
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+pre.bg-light {
+    background-color: var(--code-bg) !important;
+    color: var(--text-color);
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+    :root {
+        --sidebar-width: 0px;
+    }
+    
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s;
+    }
+    
+    .sidebar.show {
+        transform: translateX(0);
+    }
+    
+    .toggle-sidebar {
+        display: block;
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 1001;
+        background-color: var(--card-bg);
+        border-radius: 0.375rem;
+        box-shadow: var(--card-shadow);
+    }
+    
+    .main-content {
+        margin-left: 0;
+        padding-top: 1rem;
+    }
+    
+    .projects-container {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        max-height: calc(100vh - 160px);
+    }
+} 
