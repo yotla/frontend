@@ -19,8 +19,6 @@ from src.routes.site import router as site_router
 from src.config import Config
 
 
-
-
 # Create the FastAPI application
 app = FastAPI(
     title="yotla-frontend"
